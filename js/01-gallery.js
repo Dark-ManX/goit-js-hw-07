@@ -18,12 +18,14 @@ function previewGallery(galleryRef) {
 </div>`);
     });
 }
-console.log(previewGallery(galleryRef));
-// ------------Повешать слушателя события ESCAPE----------
-const originalImgRef = document.querySelector('img.lb-image');
+// console.log(previewGallery(galleryRef));
 
-galleryRef.addEventListener('keyup', onEscapeBtnClick);
+// ------------Повесить слушателя события ESCAPE----------
+const lightboxOverlayRef = document.querySelector('#lightboxOverlay');
 
+lightboxOverlayRef.addEventListener('keyup', onEscapeBtnClick);
+
+// ------------Функция при нажатии на ESCAPE--------------
 function onEscapeBtnClick(evt) {
     
     const image = evt.target;
@@ -32,6 +34,7 @@ function onEscapeBtnClick(evt) {
         return;
     }
 
+  lightboxOverlayRef.style.display = 'none';
     }
 
-console.log(galleryItems)
+// console.log(galleryItems)
