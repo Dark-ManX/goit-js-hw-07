@@ -18,23 +18,37 @@ function previewGallery(galleryRef) {
 </div>`);
     });
 }
-// console.log(previewGallery(galleryRef));
+console.log(previewGallery(galleryRef));
+
+// -----Повесить слушателя coбытия клика по картинке и обработчик события -----------
+
+galleryRef.addEventListener('click', onImageClick);
+
+function onImageClick(evt) {
+  evt.preventDefault();
+
+  if (evt.target.nodeName !== 'IMG') return;
+
+  const srcOriginalImg = galleryItems.map(galleryItem => galleryItem.original);
+
+  evt.target.setAttribute('src', `${srcOriginalImg}`);
+}
 
 // ------------Повесить слушателя события ESCAPE----------
-const lightboxOverlayRef = document.querySelector('#lightboxOverlay');
+// const lightboxOverlayRef = document.querySelector('#lightboxOverlay');
 
-lightboxOverlayRef.addEventListener('keyup', onEscapeBtnClick);
+// lightboxOverlayRef.addEventListener('keyup', onEscapeBtnClick);
 
 // ------------Функция при нажатии на ESCAPE--------------
-function onEscapeBtnClick(evt) {
+// function onEscapeBtnClick(evt) {
     
-    const image = evt.target;
+  //   const image = evt.target;
     
-    if (image.code !== 'Escape') {
-        return;
-    }
+  //   if (image.code !== 'Escape') {
+  //       return;
+  //   }
 
-  lightboxOverlayRef.style.display = 'none';
-    }
+  // lightboxOverlayRef.style.display = 'none';
+  //   }
 
 // console.log(galleryItems)
