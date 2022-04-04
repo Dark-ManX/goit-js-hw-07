@@ -7,7 +7,7 @@ const galleryRef = document.querySelector('.gallery');
 function previewGallery(galleryRef) {
     return galleryItems.map(galleryItem => {
         galleryRef.insertAdjacentHTML('beforeend', `<div class="gallery__item">
-  <a class="gallery__link" href="${galleryItem.original}">
+  <a class="gallery__link" href="${galleryItem.original}" data-lightbox="img">
     <img
       class="gallery__image"
       src="${galleryItem.preview}"
@@ -19,23 +19,19 @@ function previewGallery(galleryRef) {
     });
 }
 console.log(previewGallery(galleryRef));
-// ------------Повешать слушателя событий----------
-galleryRef.addEventListener('click', onGalleryImgClick);
+// ------------Повешать слушателя события ESCAPE----------
+const originalImgRef = document.querySelector('img.lb-image');
 
-// ------------Открытие модалки по клику--------------- 
-function onGalleryImgClick(evt) {
+galleryRef.addEventListener('keyup', onEscapeBtnClick);
+
+function onEscapeBtnClick(evt) {
     
     const image = evt.target;
     
-    if (image.nodeName !== 'IMG') {
+    if (image.code !== 'Escape') {
         return;
     }
 
-    const instance = basicLightbox.create(`
-    <img src="${image.href}">
-`)
-
-instance.show()
     }
 
 console.log(galleryItems)
