@@ -7,7 +7,7 @@ const galleryRef = document.querySelector('.gallery');
 function previewGallery(galleryRef) {
     return galleryItems.map(galleryItem => {
         galleryRef.insertAdjacentHTML('beforeend', `<div class="gallery__item">
-  <a class="gallery__link" href="${galleryItem.original}" data-lightbox="img">
+  <a class="gallery__link" href="${galleryItem.original}">
     <img
       class="gallery__image"
       src="${galleryItem.preview}"
@@ -22,12 +22,14 @@ console.log(previewGallery(galleryRef));
 
 // -----Повесить слушателя coбытия клика по картинке и обработчик события -----------
 
-galleryRef.addEventListener('click', onImageClick);
+galleryRef.addEventListener('click', onGalleryImgClick);
 
-function onImageClick(evt) {
+function onGalleryImgClick(evt) {
   evt.preventDefault();
 
-  if (evt.target.nodeName !== 'IMG') return;
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
 
   const srcOriginalImg = galleryItems.map(galleryItem => galleryItem.original);
 
