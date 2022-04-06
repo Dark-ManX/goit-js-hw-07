@@ -1,10 +1,12 @@
 import { galleryItems } from './gallery-items.js';
 
  // Change code below this line
+
 const galleryRef = document.querySelector('.gallery');
 
 // ------------Создать галлерею------------
-function previewGallery(galleryRef) {
+
+function createGallery(galleryRef) {
     return galleryItems.map(galleryItem => {
         galleryRef.insertAdjacentHTML('beforeend', `<div class="gallery__item">
   <a class="gallery__link" href="${galleryItem.original}">
@@ -18,39 +20,47 @@ function previewGallery(galleryRef) {
 </div>`);
     });
 }
-console.log(previewGallery(galleryRef));
+console.log(createGallery(galleryRef));
 
-// -----Повесить слушателя coбытия клика по картинке и обработчик события -----------
+// -----Повесить слушателя coбытия клика по картинке-----------
 
 galleryRef.addEventListener('click', onGalleryImgClick);
 
+//---------------Oбработчик события------------------- 
+
 function onGalleryImgClick(evt) {
   evt.preventDefault();
+
+  const { dataset } = evt.target;
 
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
 
-  const srcOriginalImg = galleryItems.map(galleryItem => galleryItem.original);
+  const instance = basicLightbox.create(`
+    <img src="${dataset.source}">
+  `)
 
-  evt.target.setAttribute('src', `${srcOriginalImg}`);
+  instance.show();
 }
 
 // ------------Повесить слушателя события ESCAPE----------
-// const lightboxOverlayRef = document.querySelector('#lightboxOverlay');
-
-// lightboxOverlayRef.addEventListener('keyup', onEscapeBtnClick);
+ 
+document.addEventListener('keyup', onEscapePress);
 
 // ------------Функция при нажатии на ESCAPE--------------
-// function onEscapeBtnClick(evt) {
-    
-  //   const image = evt.target;
-    
-  //   if (image.code !== 'Escape') {
-  //       return;
-  //   }
 
-  // lightboxOverlayRef.style.display = 'none';
-  //   }
+function onEscapePress(evt) {
+    
+  const basicLightboxRef = document.querySelector('div.basicLightbox');
+  
+  if (evt.code === 'Escape' && basicLightboxRef) {
+    return basicLightboxRef.remove();
+  }
+  return null;
+}
 
-// console.log(galleryItems)
+console.log(galleryItems);
+
+
+
