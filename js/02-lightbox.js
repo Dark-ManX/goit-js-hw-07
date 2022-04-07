@@ -27,7 +27,9 @@ function onGalleryImgClick(evt) {
         return;
     }
   
-  let gallery = new SimpleLightbox('.gallery a');
+  let gallery = new SimpleLightbox('.gallery a', {
+    captionDelay: 250,
+  captionsData: 'alt',});
     gallery.on('show.simplelightbox');
 };
 
