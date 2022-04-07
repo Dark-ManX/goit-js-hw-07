@@ -23,14 +23,11 @@ galleryRef.addEventListener('click', onGalleryImgClick);
 function onGalleryImgClick(evt) {
     evt.preventDefault();
 
-    const { dataset } = evt.target;
-
     if (evt.target.nodeName !== 'IMG') {
         return;
     }
-    
-  let gallery = new SimpleLightbox('.gallery a')
   
+  let gallery = new SimpleLightbox('.gallery a');
     gallery.on('show.simplelightbox');
 };
 
