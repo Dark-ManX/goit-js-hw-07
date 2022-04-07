@@ -8,7 +8,7 @@ const galleryRef = document.querySelector('.gallery');
 function createGalleryCard(galleryRef) {
     return galleryItems.map(galleryItem => {
         galleryRef.insertAdjacentHTML('beforeend', `<a class="gallery__item" href="${galleryItem.original}">
-  <img class="gallery__image" src="${galleryItem.preview}" alt="${galleryItem.description}"/>
+  <img class="gallery__image" src="${galleryItem.preview}" alt="${galleryItem.description}"/> 
 </a>`);
     });
 }
@@ -29,7 +29,8 @@ function onGalleryImgClick(evt) {
         return;
     }
     
-    let gallery = new SimpleLightbox('.gallery a');
+  let gallery = new SimpleLightbox('.gallery a')
+  
     gallery.on('show.simplelightbox');
 };
 
