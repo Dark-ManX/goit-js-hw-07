@@ -39,26 +39,26 @@ function onGalleryImgClick(evt) {
 
   const instance = basicLightbox.create(`
     <img src="${dataset.source}">
-  `)
+  `,);
 
   instance.show();
-}
 
-// ------------Повесить слушателя события ESCAPE----------
- 
-document.addEventListener('keyup', onEscapePress);
-
-// ------------Функция при нажатии на ESCAPE--------------
-
-function onEscapePress(evt) {
-    
-  const basicLightboxRef = document.querySelector('div.basicLightbox');
+  // --------------Cлушатель события при открытии картинки--------------
   
-  if (evt.code === 'Escape' && basicLightboxRef) {
-    return basicLightboxRef.remove();
+  document.addEventListener('keyup', onEscapePress);
+
+// ----------------Функция закрытия по ESC-----------------
+
+  function onEscapePress(evt) {
+  
+  if (evt.code !== 'Escape') {
+   
+    return;
   }
-  return null;
+  return instance.close();
 }
+}
+
 
 console.log(galleryItems);
 
